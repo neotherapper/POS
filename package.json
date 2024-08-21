@@ -1,12 +1,13 @@
 {
   "name": "material-ui-vite-ts",
   "private": true,
-  "version": "5.0.0",
+  "version": "0.0.1",
   "type": "module",
   "scripts": {
     "dev": "vite",
     "build": "tsc && vite build",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "cy:open": "cypress open"
   },
   "dependencies": {
     "@emotion/react": "latest",
@@ -20,6 +21,7 @@
     "@types/react": "latest",
     "@types/react-dom": "latest",
     "@vitejs/plugin-react": "latest",
+    "cypress": "^13.13.3",
     "typescript": "latest",
     "vite": "latest"
   }
