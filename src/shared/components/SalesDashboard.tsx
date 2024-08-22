@@ -16,29 +16,6 @@ const dashboardChartSetting = {
   height: 300,
 };
 
-[
-  {
-    cashierId: 1,
-    saleAmount: 100.0,
-  },
-  {
-    cashierId: 1,
-    saleAmount: 200.0,
-  },
-  {
-    cashierId: 2,
-    saleAmount: 500.0,
-  },
-  {
-    cashierId: 1,
-    saleAmount: 150.0,
-  },
-  {
-    cashierId: 3,
-    saleAmount: 300.0,
-  },
-];
-
 function DashboardBarChart({ data }: { data: Sale[] | null }) {
   if (!data) {
     return;
@@ -53,7 +30,7 @@ function DashboardBarChart({ data }: { data: Sale[] | null }) {
       "1": 0,
       "2": 0,
       "3": 0,
-    }
+    } as Record<string, number>
   );
 
   console.log(xData);
