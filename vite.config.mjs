@@ -1,6 +1,7 @@
 import { defineConfig, loadEnv } from "vite";
 import react from "@vitejs/plugin-react";
 import istanbul from "vite-plugin-istanbul";
+import { TanStackRouterVite } from "@tanstack/router-plugin/vite";
 
 export default defineConfig(({ mode }) => {
   const env = loadEnv(mode, process.cwd(), "VITE");
@@ -18,6 +19,7 @@ export default defineConfig(({ mode }) => {
     },
     plugins: [
       react(),
+      TanStackRouterVite(),
       istanbul({
         cypress: true,
         requireEnv: true,
