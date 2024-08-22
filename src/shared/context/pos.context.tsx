@@ -1,6 +1,8 @@
 import { createContext, PropsWithChildren, useContext, useState } from "react";
 import { Cashier } from "../models/cashier";
 import { Sale } from "../models/sale";
+import useLocalStorage from "../hooks/useLocalStorage";
+import Cashiers from "../../../data/cashier.json";
 
 const CashierContext = createContext<Cashier | null | undefined>(undefined);
 const CashierStateUpdater = createContext<
