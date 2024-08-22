@@ -2,6 +2,7 @@
   "name": "material-ui-vite-ts",
   "private": true,
   "version": "0.0.1",
+  "type": "module",
   "scripts": {
     "dev": "vite",
     "build": "tsc && vite build",
@@ -59,7 +60,6 @@
     "exclude": [
       "src/models/*.ts"
     ],
-    "report-dir": "cypress-coverage",
     "reporter": [
       "html",
       "json"

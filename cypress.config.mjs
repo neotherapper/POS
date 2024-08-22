@@ -1,6 +1,9 @@
 import { defineConfig } from "cypress";
 import { mergeConfig, loadEnv } from "vite";
 import { devServer } from "@cypress/vite-dev-server";
+import codeCoverageTask from "@cypress/code-coverage/task";
+import istanbul from "@cypress/code-coverage/use-babelrc";
+import * as viteConfig from "./vite.config.mjs  ";
 
 export default defineConfig({
   retries: {
@@ -14,18 +17,17 @@ export default defineConfig({
     viewportWidth: 1280,
     experimentalRunAllSpecs: true,
     setupNodeEvents(on, config) {
-      require("@cypress/code-coverage/task")(on, config);
+      codeCoverageTask(on, config);
       // tell Cypress to use .babelrc file
       // and instrument the specs files
       // only the extra application files will be instrumented
       // not the spec files themselves
-      on("file:preprocessor", require("@cypress/code-coverage/use-browserify-istanbul"));
+      // on("file:preprocessor", istanbul);
       return config;
     },
   },
   component: {
     devServer(devServerConfig) {
-      const viteConfig = require("./vite.config.ts");
       const conf = {
         define: {
           "process.env": loadEnv("development", process.cwd(), "VITE"),
@@ -50,7 +52,7 @@ export default defineConfig({
     specPattern: "src/**/*.cy.{js,jsx,ts,tsx}",
     supportFile: "cypress/support/component.ts",
     setupNodeEvents(on, config) {
-      require("@cypress/code-coverage/task")(on, config);
+      codeCoverageTask(on, config);
       return config;
     },
   },
