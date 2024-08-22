@@ -18,8 +18,8 @@ export default function App() {
   return (
     <Box
       display="flex"
-      alignItems="center"
-      justifyContent={"center"}
+      alignItems="flex-start"
+      justifyContent="center"
       gap={4}
       p={2}
       minHeight={"100vh"}

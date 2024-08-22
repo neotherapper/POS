@@ -40,7 +40,7 @@ export function SaleScreen({ onBack }: OrderProps) {
           gridArea: "info",
           display: "flex",
           flexDirection: "column",
-          // justifyContent: "flex-end",
+          justifyContent: "flex-end",
         }}
       >
         <Button size="medium" variant="outlined" color="info" sx={{ textAlign: "end" }}>
