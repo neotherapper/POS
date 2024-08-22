@@ -1,5 +1,6 @@
 import { Box, Button, Typography } from "@mui/material";
 import KeyboardBackspaceIcon from "@mui/icons-material/KeyboardBackspace";
+import { SaleTable } from "./SaleTable";
 
 type OrderProps = Readonly<{
   onBack: () => void;
@@ -41,7 +42,9 @@ export function SaleScreen({ onBack }: OrderProps) {
           Cost $41
         </Button>
       </Box>
-      <Box sx={{ gridArea: "main", bgcolor: "secondary.main" }}>Main</Box>
+      <Box sx={{ gridArea: "main", bgcolor: "secondary.main" }}>
+        <SaleTable />
+      </Box>
       <Box sx={{ gridArea: "footer" }}>
         <Button
           variant="contained"
