@@ -10,12 +10,12 @@ export function SaleScreen({ onBack }: OrderProps) {
     <Box
       sx={{
         display: "grid",
-        gridTemplateColumns: "repeat(8, 1fr)",
-        gap: 2,
-        gridTemplateRows: "2fr 4fr 1fr",
-        gridTemplateAreas: `"backButton backButton header header header header info info"
-  " . main main main main main main . "
-  ". . . . . . footer footer"`,
+        gridTemplateColumns: "repeat(4, 1fr)",
+        gap: 1,
+        gridTemplateRows: "auto",
+        gridTemplateAreas: `"backButton header header info"
+          " . main main . "
+          ". . . footer"`,
       }}
     >
       <Box sx={{ gridArea: "backButton" }}>
@@ -34,18 +34,26 @@ export function SaleScreen({ onBack }: OrderProps) {
           Sale
         </Typography>
       </Box>
-      <Box sx={{ gridArea: "info" }}>
-        <Button size="large" variant="text">
+      <Box
+        gap={1}
+        sx={{
+          gridArea: "info",
+          display: "flex",
+          flexDirection: "column",
+          // justifyContent: "flex-end",
+        }}
+      >
+        <Button size="medium" variant="outlined" color="info" sx={{ textAlign: "end" }}>
           Items 6
         </Button>
-        <Button size="large" variant="text">
+        <Button size="medium" variant="outlined" color="info" sx={{ textAlign: "end" }}>
           Cost $41
         </Button>
       </Box>
-      <Box sx={{ gridArea: "main", bgcolor: "secondary.main" }}>
+      <Box sx={{ gridArea: "main", display: "flex", justifyContent: "center" }}>
         <SaleTable />
       </Box>
-      <Box sx={{ gridArea: "footer" }}>
+      <Box sx={{ gridArea: "footer", display: "flex", justifyContent: "flex-end" }}>
         <Button
           variant="contained"
           size="large"

@@ -13,8 +13,8 @@ import useLocalStorage from "../hooks/useLocalStorage";
 export function SaleTable() {
   const { value: products } = useLocalStorage<Product[]>("products", []);
   return (
-    <TableContainer component={Paper}>
-      <Table sx={{ minWidth: 650 }} aria-label="simple table">
+    <TableContainer sx={{ width: 300 }} component={Paper}>
+      <Table aria-label="simple table">
         <TableHead>
           <TableRow>
             <TableCell>Item</TableCell>
@@ -26,10 +26,13 @@ export function SaleTable() {
         <TableBody>
           {products.map((product) => (
             <TableRow key={product.name} sx={{ "&:last-child td, &:last-child th": { border: 0 } }}>
-              <TableCell component="th" scope="row">
-                {product.sku}
-                {product.name}
-                {product.descr}
+              <TableCell
+                component="th"
+                scope="row"
+                sx={{ display: "flex", flexDirection: "column" }}
+              >
+                <div>{product.name}</div>
+                <div>{product.descr}</div>
               </TableCell>
               <TableCell align="right">{product.price}</TableCell>
               <TableCell align="right">Qty</TableCell>
