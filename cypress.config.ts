@@ -1,9 +1,11 @@
 import { defineConfig } from "cypress";
 import { mergeConfig, loadEnv } from "vite";
 import { devServer } from "@cypress/vite-dev-server";
-import codeCoverageTask from "@cypress/code-coverage/task";
 
 export default defineConfig({
+  retries: {
+    runMode: 2,
+  },
   e2e: {
     baseUrl: "http://localhost:3000",
     specPattern: "cypress/tests/**/*.spec.{js,jsx,ts,tsx}",
@@ -12,7 +14,12 @@ export default defineConfig({
     viewportWidth: 1280,
     experimentalRunAllSpecs: true,
     setupNodeEvents(on, config) {
-      codeCoverageTask(on, config);
+      require("@cypress/code-coverage/task")(on, config);
+      // tell Cypress to use .babelrc file
+      // and instrument the specs files
+      // only the extra application files will be instrumented
+      // not the spec files themselves
+      on("file:preprocessor", require("@cypress/code-coverage/use-babelrc"));
       return config;
     },
   },
@@ -43,7 +50,7 @@ export default defineConfig({
     specPattern: "src/**/*.cy.{js,jsx,ts,tsx}",
     supportFile: "cypress/support/component.ts",
     setupNodeEvents(on, config) {
-      codeCoverageTask(on, config);
+      require("@cypress/code-coverage/task")(on, config);
       return config;
     },
   },
