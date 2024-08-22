@@ -19,7 +19,7 @@ export default defineConfig({
       // and instrument the specs files
       // only the extra application files will be instrumented
       // not the spec files themselves
-      on("file:preprocessor", require("@cypress/code-coverage/use-babelrc"));
+      on("file:preprocessor", require("@cypress/code-coverage/use-browserify-istanbul"));
       return config;
     },
   },
