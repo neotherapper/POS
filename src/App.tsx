@@ -16,7 +16,14 @@ export default function App() {
   useLocalStorage<Sale[]>("sales", Sales);
 
   return (
-    <Box display="flex" alignItems="center" justifyContent={"center"} gap={4} p={2}>
+    <Box
+      display="flex"
+      alignItems="center"
+      justifyContent={"center"}
+      gap={4}
+      p={2}
+      minHeight={"100vh"}
+    >
       <PosContextProvider>
         <SelectCashier />
         <SalesDashboard />
