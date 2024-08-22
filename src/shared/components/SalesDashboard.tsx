@@ -1,8 +1,10 @@
-import { Typography } from "@mui/material";
-import { useCashierState, useSalesState } from "../context/pos.context";
+import { Box, Button, Typography } from "@mui/material";
+import { useCashierState, useCashierStateUpdater, useSalesState } from "../context/pos.context";
 import { BarChart } from "@mui/x-charts/BarChart";
 import { Sale } from "../models/sale";
 import PersonIcon from "@mui/icons-material/Person";
+import { useState } from "react";
+import { Order } from "./Order";
 
 const dashboardChartSetting = {
   yAxis: [
@@ -70,31 +72,69 @@ function DashboardBarChart({ data }: { data: Sale[] | null }) {
 
 export default function SalesDashboard() {
   const cashier = useCashierState();
+  const cashierUpdater = useCashierStateUpdater();
   const sales = useSalesState();
+  const [IsOrderVisible, setIsOrderVisible] = useState(false);
 
   if (!cashier) {
     return;
   }
 
+  const onSwitchCashier = () => {
+    cashierUpdater(null);
+  };
+  const onShowOrder = () => {
+    setIsOrderVisible(true);
+  };
+
+  const onHideOrder = () => {
+    setIsOrderVisible(false);
+  };
+
   return (
     <>
-      <Typography variant="h2" component="h1" sx={{ mb: 2 }}>
-        Cashier Sales Statistics
-      </Typography>
-      <DashboardBarChart data={sales} />
-      <Typography
-        style={{
-          position: "absolute",
-          top: "30px",
-          right: "30px",
-          display: "flex",
-          alignItems: "center",
-        }}
-        variant="button"
-      >
-        <PersonIcon fontSize="large" />
-        {cashier?.name}
-      </Typography>
+      {!IsOrderVisible && (
+        <span>
+          <Typography
+            style={{
+              position: "absolute",
+              top: "30px",
+              right: "30px",
+              display: "flex",
+              alignItems: "center",
+            }}
+            variant="button"
+          >
+            <PersonIcon fontSize="large" />
+            {cashier?.name}
+          </Typography>
+          <Typography variant="h4" component="h2" sx={{ mb: 2 }}>
+            Cashier Sales Statistics
+          </Typography>
+          <DashboardBarChart data={sales} />
+
+          <Box sx={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "12rem" }}>
+            <Button
+              variant="contained"
+              onClick={() => {
+                onSwitchCashier();
+              }}
+            >
+              Switch Cashier
+            </Button>
+
+            <Button
+              variant="outlined"
+              onClick={() => {
+                onShowOrder();
+              }}
+            >
+              Add Sale
+            </Button>
+          </Box>
+        </span>
+      )}
+      {IsOrderVisible && <Order onBack={onHideOrder} />}
     </>
   );
 }
