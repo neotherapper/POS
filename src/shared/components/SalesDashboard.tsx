@@ -4,7 +4,7 @@ import { BarChart } from "@mui/x-charts/BarChart";
 import { Sale } from "../models/sale";
 import PersonIcon from "@mui/icons-material/Person";
 import { useState } from "react";
-import { Order } from "./Order";
+import { SaleScreen } from "./SaleScreen";
 
 const dashboardChartSetting = {
   yAxis: [
@@ -134,7 +134,7 @@ export default function SalesDashboard() {
           </Box>
         </span>
       )}
-      {IsOrderVisible && <Order onBack={onHideOrder} />}
+      {IsOrderVisible && <SaleScreen onBack={onHideOrder} />}
     </>
   );
 }
