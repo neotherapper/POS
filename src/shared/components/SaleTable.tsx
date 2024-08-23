@@ -6,14 +6,19 @@ import {
   TableContainer,
   TableHead,
   TableRow,
+  Input,
 } from "@mui/material";
 import { Product } from "../models/product";
 import useLocalStorage from "../hooks/useLocalStorage";
+import { useQuantityState, useQuantityUpdater } from "../context/pos.context";
 
 export function SaleTable() {
   const { value: products } = useLocalStorage<Product[]>("products", []);
+  const quantityInput = useQuantityState();
+  const updateQuantity = useQuantityUpdater();
+
   return (
-    <TableContainer sx={{ width: 300 }} component={Paper}>
+    <TableContainer sx={{ width: 350 }} component={Paper}>
       <Table aria-label="simple table">
         <TableHead>
           <TableRow>
@@ -35,7 +40,13 @@ export function SaleTable() {
                 <div>{product.descr}</div>
               </TableCell>
               <TableCell align="right">{product.price}</TableCell>
-              <TableCell align="right">Qty</TableCell>
+              <TableCell align="right">
+                <Input
+                  name={product.name}
+                  value={quantityInput?.[product.sku]}
+                  onChange={(event) => updateQuantity(product.sku, event.target.value)}
+                />
+              </TableCell>
               <TableCell align="right">{product.price * 1}</TableCell>
             </TableRow>
           ))}
