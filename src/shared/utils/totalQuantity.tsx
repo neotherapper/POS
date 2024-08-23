@@ -1,5 +1,5 @@
 import { QuantityInput } from "../models/quantity";
 
 export function getTotalQuantity(quantity: QuantityInput) {
-  return 0;
+  return Object.values(quantity).reduce((acc, quantityValue) => acc + quantityValue, 0);
 }

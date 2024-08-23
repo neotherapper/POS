@@ -7,7 +7,7 @@ describe("getTotalQuantity", () => {
     const mockQuantity: QuantityInput = { "1": 0, "2": 0, "3": 0 };
     expect(getTotalQuantity(mockQuantity)).toBe(0);
   });
-  test("hould return the total value when at least one input has value", () => {
+  test("should return the total value when at least one input has value", () => {
     const mockQuantity: QuantityInput = { "1": 2, "2": 0, "3": 0 };
     expect(getTotalQuantity(mockQuantity)).toBe(2);
 
