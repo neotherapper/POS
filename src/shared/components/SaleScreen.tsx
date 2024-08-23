@@ -1,11 +1,16 @@
 import { Box, Button, Typography } from "@mui/material";
 import KeyboardBackspaceIcon from "@mui/icons-material/KeyboardBackspace";
 import { SaleTable } from "./SaleTable";
+import { useQuantityState } from "../context/pos.context";
+import { getTotalQuantity } from "../utils/totalQuantity";
+import { QuantityInput } from "../models/quantity";
 
 type OrderProps = Readonly<{
   onBack: () => void;
 }>;
 export function SaleScreen({ onBack }: OrderProps) {
+  const quantityState = useQuantityState();
+  const totalQuantity = getTotalQuantity(quantityState as QuantityInput);
   return (
     <Box
       sx={{
@@ -44,7 +49,7 @@ export function SaleScreen({ onBack }: OrderProps) {
         }}
       >
         <Button size="medium" variant="outlined" color="info" sx={{ textAlign: "end" }}>
-          Items 6
+          Items {totalQuantity}
         </Button>
         <Button size="medium" variant="outlined" color="info" sx={{ textAlign: "end" }}>
           Cost $41
