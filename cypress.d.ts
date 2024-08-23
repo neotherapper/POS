@@ -8,6 +8,8 @@ declare global {
   namespace Cypress {
     interface Chainable {
       mount: typeof mount;
+      getBySel(dataTestAttribute: string, args?: any): Chainable<JQuery<HTMLElement>>;
+      getBySelLike(dataTestPrefixAttribute: string, args?: any): Chainable<JQuery<HTMLElement>>;
     }
   }
 }
