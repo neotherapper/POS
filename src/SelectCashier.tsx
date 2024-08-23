@@ -7,11 +7,19 @@ import Cashiers from "../data/cashier.json";
 import { Cashier } from "./shared/models/cashier";
 import { useCashierState, useCashierStateUpdater } from "./shared/context/pos.context";
 import { Checkbox } from "@mui/material";
+import CircleIcon from "@mui/icons-material/Circle";
 
 function CashierListItem({ cashier }: { cashier: Cashier }) {
   return (
-    <ListItem alignItems="flex-start" secondaryAction={<Checkbox edge="end" />} disablePadding>
-      <ListItemText primary={cashier.name} />
+    <ListItem
+      alignItems="flex-start"
+      secondaryAction={<Checkbox icon={<CircleIcon fontSize="large" />} edge="end" />}
+      disablePadding
+    >
+      <ListItemText
+        primaryTypographyProps={{ variant: "h4", component: "span", textAlign: "center" }}
+        primary={cashier.name}
+      />
     </ListItem>
   );
 }
@@ -25,8 +33,10 @@ export default function SelectCashier() {
   }
 
   return (
-    <List sx={{ width: "100%", maxWidth: 360, bgcolor: "background.paper" }}>
-      <Typography variant="h4" component="h1" sx={{ mb: 2 }}>
+    <List
+      sx={{ width: "100%", maxWidth: 300, bgcolor: "background.paper", border: "1px solid black" }}
+    >
+      <Typography variant="h4" component="h1" textAlign="center" sx={{ mb: 2 }}>
         Select Cashier
       </Typography>
       <Divider variant="fullWidth" component="li" />
